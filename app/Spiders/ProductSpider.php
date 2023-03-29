@@ -4,16 +4,14 @@ namespace App\Spiders;
 
 use App\Processors\ProductItemProcessor;
 use Generator;
+use InvalidArgumentException;
 use RoachPHP\Http\Response;
 use RoachPHP\Spider\BasicSpider;
 use RoachPHP\Spider\ParseResult;
-use Symfony\Component\DomCrawler\Crawler;
 
 class ProductSpider extends BasicSpider
 {
-    public array $startUrls = [
-        "https://openshop.uz/shop/subsubcategory/xiaomi"
-    ];
+    public array $startUrls = [];
 
     public array $itemProcessors = [
         ProductItemProcessor::class
@@ -24,10 +22,20 @@ class ProductSpider extends BasicSpider
      */
     public function parse(Response $response): Generator
     {
-        foreach ($response->filter('.product-name') as $item) {
+        $shop = $this->context['shop'];
+
+        $links = $response->filter($shop->linkSelector)->links();
+
+        try {
             yield $this->item([
-                'title' => (new Crawler($item))->text()
-            ]);
+                'title' => $response->filter($shop->titleSelector)->text(),
+                'price' => $response->filter($shop->priceSelector)->text(),
+                'link' => $response->getUri()
+            ]);;
+        } catch (InvalidArgumentException $exception) {
+            foreach ($links as $link) {
+                yield $this->request('GET', $link->getUri());
+            }
         }
     }
 }

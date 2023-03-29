@@ -17,8 +17,8 @@ class ProductItemProcessor implements ItemProcessorInterface
     {
         Product::query()->create([
             'title' => $item->get('title'),
-            'price' => 0,
-            'shop_link' => 'asd'
+            'price' => (int)filter_var($item->get('price'), FILTER_SANITIZE_NUMBER_INT),
+            'shop_link' => $item->get('link')
         ]);
 
         return $item;
