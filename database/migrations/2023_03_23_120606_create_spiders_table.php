@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('spiders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('shop_id');
-            $table->string('product_filter');
+            $table->json('product_filter');
             $table->timestamps();
         });
     }

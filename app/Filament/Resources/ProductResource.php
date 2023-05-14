@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProductResource extends Resource
 {
@@ -23,7 +20,20 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Select::make('category_id')->relationship('category', 'title'),
+                Forms\Components\Select::make('brand_id')->relationship('brand', 'title'),
+                Forms\Components\Select::make('shop_id')->relationship('shop', 'title'),
+                Forms\Components\TextInput::make('title')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\Textarea::make('description')
+                    ->maxLength(65535),
+                Forms\Components\TextInput::make('price')
+                    ->required(),
+                Forms\Components\TextInput::make('details'),
+                Forms\Components\TextInput::make('shop_link')
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 
@@ -31,9 +41,11 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')->sortable(),
-                Tables\Columns\TextColumn::make('price')->sortable()
-
+                Tables\Columns\TextColumn::make('title'),
+                Tables\Columns\TextColumn::make('category.title'),
+                Tables\Columns\TextColumn::make('brand.title'),
+                Tables\Columns\TextColumn::make('shop.title'),
+                Tables\Columns\TextColumn::make('price'),
             ])
             ->filters([
                 //

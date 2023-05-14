@@ -22,20 +22,31 @@ class ProductSpider extends BasicSpider
      */
     public function parse(Response $response): Generator
     {
-        $shop = $this->context['shop'];
+        $productFilter = $this->context['filter'];
+        $links = $response->filter($productFilter->shop_link)->links();
 
-        $links = $response->filter($shop->linkSelector)->links();
-
-        try {
-            yield $this->item([
-                'title' => $response->filter($shop->titleSelector)->text(),
-                'price' => $response->filter($shop->priceSelector)->text(),
-                'link' => $response->getUri()
-            ]);;
-        } catch (InvalidArgumentException $exception) {
-            foreach ($links as $link) {
-                yield $this->request('GET', $link->getUri());
-            }
+        foreach ($links as $link) {
+            yield $this->request('GET', $link->getUri(), 'parseItem');
         }
+    }
+
+    public function parseItem(Response $response)
+    {
+        try {
+            $productFilter = $this->context['filter'];
+            $title = $response->filter($productFilter->title)->text();
+            $image = $response->filter($productFilter->image)->attr('src');
+            $price = $response->filter($productFilter->price)->text();
+            $shop = $this->context['shop_id'];
+            $brand = $response->filter($productFilter->brand)->text();
+            $category = $response->filter($productFilter->category)->text();
+            $link = $response->getUri();
+
+            yield $this->item(compact('title', 'image', 'price', 'shop', 'brand', 'category', 'link'));
+
+        } catch (\Exception $exception) {
+
+        }
+
     }
 }
