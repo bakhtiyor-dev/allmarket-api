@@ -26,6 +26,8 @@ Route::middleware('auth')->group(function () {
             ['link_filter' => $spider->product_filter->shop_link]
         );
 
+        dd($links);
+
         foreach ($links as $link) {
             echo $link->get('link');
             ProductParserJob::dispatch($link->get('link'), $spider);
