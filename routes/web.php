@@ -37,4 +37,17 @@ Route::middleware('auth')->group(function () {
     })->name('spiders.run');
 });
 
+Route::get('/test', function () {
+    $spider = \App\Models\Spider::all()[1];
+
+    Roach::collectSpider(
+        ProductSpider::class,
+        overrides: new Overrides(startUrls: ['https://ultrashop.uz/ru/store/kompyuternaya-tehnika/noutbuki/23825-acer-aspire-vero-av15-51-7617-nx-aycaa-006-15-6-full-hd-1920x1080-core-i7-1195g7-16-gb-512-gb-ssd']),
+        context: [
+            'filter' => $spider->product_filter,
+            'shop_id' => $spider->shop->id
+        ]);
+
+
+});
 require __DIR__ . '/auth.php';

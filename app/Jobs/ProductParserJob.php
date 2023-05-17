@@ -32,6 +32,7 @@ class ProductParserJob implements ShouldQueue
      */
     public function handle(): void
     {
+        logger('asdasdasdasdas');
         Roach::startSpider(
             ProductSpider::class,
             overrides: new Overrides(startUrls: [$this->productUrl]),
