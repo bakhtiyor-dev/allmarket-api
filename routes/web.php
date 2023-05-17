@@ -40,4 +40,8 @@ Route::middleware('auth')->group(function () {
     })->name('spiders.run');
 });
 
+Route::get('/test', function () {
+    $res = Http::get('https://openshop.uz');
+    return $res->body();
+});
 require __DIR__ . '/auth.php';
