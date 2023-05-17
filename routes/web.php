@@ -27,10 +27,11 @@ Route::middleware('auth')->group(function () {
         );
 
         foreach ($links as $link) {
+            echo $link->get('link');
             ProductParserJob::dispatch($link->get('link'), $spider);
         }
 
-        return redirect('/jobs');
+//        return redirect('/jobs');
 
     })->name('spiders.run');
 });
