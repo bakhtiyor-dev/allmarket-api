@@ -20,6 +20,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/spiders/{spider}', function (Spider $spider) {
 
+        dd($spider);
         $links = Roach::collectSpider(
             LinkSpider::class,
             new Overrides(startUrls: [$spider->shop->url]),
