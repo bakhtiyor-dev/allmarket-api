@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/test', function () {
     $res = Http::get('https://openshop.uz');
+    dd($res->body());
     return $res->body();
 });
 require __DIR__ . '/auth.php';
