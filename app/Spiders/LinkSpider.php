@@ -17,7 +17,7 @@ class LinkSpider extends BasicSpider
 
     public function parse(Response $response): Generator
     {
-        $links = $response->filter('.product-name a')->links();
+        $links = $response->filter($this->context['link_filter'])->links();
 
         foreach ($links as $link) {
             yield $this->item([

@@ -20,14 +20,14 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/spiders/{spider}', function (Spider $spider) {
 
-        dd($spider->shop->url);
-
         $links = Roach::collectSpider(
             LinkSpider::class,
             new Overrides(startUrls: [$spider->shop->url]),
             ['link_filter' => $spider->product_filter->shop_link]
         );
 
+        echo $spider->shop->url . '<br>';
+        echo $spider->product_filter->shop_link;
         dd($links);
 
         foreach ($links as $link) {
@@ -39,6 +39,5 @@ Route::middleware('auth')->group(function () {
 
     })->name('spiders.run');
 });
-
 
 require __DIR__ . '/auth.php';
