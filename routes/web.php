@@ -26,23 +26,15 @@ Route::middleware('auth')->group(function () {
             ['link_filter' => $spider->product_filter->shop_link]
         );
 
-        echo $spider->shop->url . '<br>';
-        echo $spider->product_filter->shop_link;
-        dd($links);
 
         foreach ($links as $link) {
             echo $link->get('link');
             ProductParserJob::dispatch($link->get('link'), $spider);
         }
 
-//        return redirect('/jobs');
+        return redirect('/jobs');
 
     })->name('spiders.run');
 });
 
-Route::get('/test', function () {
-    $res = Http::get('https://openshop.uz');
-    dd($res->body());
-    return $res->body();
-});
 require __DIR__ . '/auth.php';
