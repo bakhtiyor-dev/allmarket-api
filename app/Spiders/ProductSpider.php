@@ -4,10 +4,8 @@ namespace App\Spiders;
 
 use App\Processors\ProductItemProcessor;
 use Generator;
-use InvalidArgumentException;
 use RoachPHP\Http\Response;
 use RoachPHP\Spider\BasicSpider;
-use RoachPHP\Spider\ParseResult;
 
 class ProductSpider extends BasicSpider
 {
@@ -17,20 +15,7 @@ class ProductSpider extends BasicSpider
         ProductItemProcessor::class
     ];
 
-    /**
-     * @return Generator<ParseResult>
-     */
     public function parse(Response $response): Generator
-    {
-        $productFilter = $this->context['filter'];
-        $links = $response->filter($productFilter->shop_link)->links();
-
-        foreach ($links as $link) {
-            yield $this->request('GET', $link->getUri(), 'parseItem');
-        }
-    }
-
-    public function parseItem(Response $response)
     {
         try {
             $productFilter = $this->context['filter'];
@@ -47,6 +32,5 @@ class ProductSpider extends BasicSpider
         } catch (\Exception $exception) {
 
         }
-
     }
 }

@@ -13,6 +13,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
         "roach-php/laravel": "^2.0",
+        "romanzipp/laravel-queue-monitor": "^4.0",
         "spatie/laravel-data": "^3.2"
     },
     "require-dev": {

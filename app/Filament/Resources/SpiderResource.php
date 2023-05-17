@@ -54,7 +54,10 @@ class SpiderResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-
+                Tables\Actions\Action::make('run')
+                    ->url(fn(Spider $record): string => route('spiders.run', $record))
+                    ->openUrlInNewTab()
+                    ->icon('heroicon-o-play')
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
