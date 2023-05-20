@@ -13,6 +13,8 @@
           integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body class="font-sans antialiased">
 <div class="min-h-screen bg-gray-100">
@@ -41,7 +43,7 @@
             <ul class="space-y-2">
                 @foreach(\App\Models\Category::all() as $category)
                     <li>
-                        <a href="#"
+                        <a href="{{route('product.filter',['category' => $category->id])}}"
                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
                             <span class="ml-3">{{$category->title}}</span>
                         </a>
@@ -55,55 +57,7 @@
     <div id="crypto-modal" tabindex="-1" aria-hidden="true"
          data-modal-placement="top-center"
          class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
-        <div class="relative w-full h-full max-w-xl md:h-auto">
-            <!-- Modal content -->
-            <div class="relative bg-white rounded-lg shadow">
-                <button type="button"
-                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                        data-modal-hide="crypto-modal">
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                              clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="sr-only">Close modal</span>
-                </button>
-                <!-- Modal header -->
-                <div class="px-6 py-4 border-b rounded-t">
-                    <form class="mr-5">
-                        <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Поиск</label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <i class="fas fa-search text-cyan-600"></i>
-                            </div>
-
-                            <input type="search" id="default-search"
-                                   class="block w-full p-1.5 pl-10 text-gray-900 border-2 border-cyan-500 rounded-lg bg-gray-50 outline-none hover:bg-gray-100 cursor-pointer"
-                                   placeholder="Поиск..." required
-                                   autocomplete="off">
-                        </div>
-                    </form>
-                </div>
-                <!-- Modal body -->
-                <div class="p-6">
-
-                    <ul class="space-y-3">
-                        <li>
-                            <a href="#"
-                               class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow border-2">
-                                <img class="h-20"
-                                     src="https://openshop.uz/public/storage/uploads/products/photos/202210/LAeHdDTNTM9Ao4rMLczeZGQMJRrcvdrkNPtEebcn.jpg"
-                                     alt="">
-                                <span class="flex-1 ml-4 ">iPhone 14 Pro 128GB Purple</span>
-                            </a>
-                        </li>
-
-                    </ul>
-
-                </div>
-            </div>
-        </div>
+        @include('components.search')
     </div>
 
 
@@ -261,6 +215,8 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+
+
 </div>
 </body>
 </html>
