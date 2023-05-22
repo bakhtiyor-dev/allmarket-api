@@ -1,11 +1,18 @@
 <x-app-layout>
     <div class="bg-white p-2">
+        <div class="flex justify-between p-5">
+            <h4 class="text-xl font-medium">{{$category?->title}}</h4>
+            <div>
+                Сортировка
+            </div>
+        </div>
+        <hr class="mb-3">
         <div class="grid grid-cols-4">
             <div class="p-5">
                 <form action="{{route('product.filter')}}" method="GET">
                     <div class="mb-10">
                         <h3 class="text-lg font-medium mb-2">Цена</h3>
-                        <div class="flex">
+                        <div class="flex mb-3">
 
                             <input type="text"
                                    class="bg-gray-50 mr-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -18,6 +25,10 @@
                                    value="{{request()->price ? request()->price[1] : ''}}"
                                    name="price[]">
                         </div>
+                        <button type="submit"
+                                class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none">
+                            Применить
+                        </button>
                     </div>
 
                     <div>

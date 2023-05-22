@@ -18,7 +18,7 @@
                             </li>
                             <li class="mr-6">
                                 <a class="flex items-center text-sm font-medium text-gray-400 hover:text-gray-500"
-                                   href="#">
+                                   href="{{route('product.filter',['category' => $product->category->id])}}">
                                     <span>{{$product->category?->title}}</span>
                                     <svg class="ml-6" width="4" height="7" viewbox="0 0 4 7" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">

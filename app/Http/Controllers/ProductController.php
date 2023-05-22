@@ -18,10 +18,13 @@ class ProductController extends Controller
 
     public function filter(Request $request)
     {
+        $category = Category::query()->find($request->input('category'));
+
         $products = Product::query()->filter($request->all())->paginate(16);
 
         return view('product.index', [
-            'products' => $products
+            'products' => $products,
+            'category' => $category
         ]);
     }
 

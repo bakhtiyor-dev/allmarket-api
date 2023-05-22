@@ -1,6 +1,4 @@
 <x-app-layout>
-
-
     <div id="default-carousel" class="relative" data-carousel="static">
         <!-- Carousel wrapper -->
         <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
@@ -52,35 +50,12 @@
     <div class="mt-4">
         <h4 class="text-xl uppercase font-bold mb-2">Популярные категории</h4>
         <div class="grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 bg-gray-50 p-5">
-            <a href="#" class="p-3 text-center shadow bg-white hover:bg-gray-50 rounded">
-                <i class="fa-solid fa-mobile-screen text-cyan-500 mr-1"></i>
-                <span class="font-medium">Смартфоны</span>
-            </a>
-
-            <a href="#" class="p-3 text-center shadow bg-white hover:bg-gray-50 rounded">
-                <i class="fa-solid fa-tv text-cyan-500 mr-1"></i>
-                <span class="font-medium">Телевизоры</span>
-            </a>
-
-            <a href="#" class="p-3 text-center shadow bg-white hover:bg-gray-50 rounded">
-                <i class="fa-solid fa-laptop text-cyan-500 mr-1"></i>
-                <span class="font-medium">Компьютеры</span>
-            </a>
-
-            <a href="#" class="p-3 text-center shadow bg-white hover:bg-gray-50 rounded">
-                <i class="fa-solid fa-fan text-cyan-500 mr-1"></i>
-                <span class="font-medium">Кондиционеры</span>
-            </a>
-
-            <a href="#" class="p-3 text-center shadow bg-white hover:bg-gray-50 rounded">
-                <i class="fa-solid fa-snowflake text-cyan-500 mr-1"></i>
-                <span class="font-medium">Холодильники</span>
-            </a>
-
-            <a href="#" class="p-3 text-center shadow bg-white hover:bg-gray-50 rounded">
-                <i class="fa-solid fa-tablet text-cyan-500 mr-1"></i>
-                <span class="font-medium">Планшеты</span>
-            </a>
+            @foreach($categories->take(6) as $category)
+                <a href="{{route('product.filter',['category' => $category->id])}}"
+                   class="p-3 text-center shadow bg-white hover:bg-gray-50 rounded">
+                    <span class="font-medium">{{$category->title}}</span>
+                </a>
+            @endforeach
         </div>
 
     </div>

@@ -12,7 +12,7 @@ class ProductItemProcessor implements ItemProcessorInterface
 {
     public function configure(array $options): void
     {
-        // TODO: Implement configure() method.
+
     }
 
     public function processItem(ItemInterface $item): ItemInterface
@@ -26,7 +26,6 @@ class ProductItemProcessor implements ItemProcessorInterface
                 'shop_id' => $item->get('shop'),
                 'brand_id' => Brand::query()->firstOrCreate(['title' => $item->get('brand')])->id,
                 'image' => $item->get('image')
-                // 'description' => $item->get('description')
             ]
         );
 
