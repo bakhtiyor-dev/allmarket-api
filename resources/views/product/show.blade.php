@@ -50,46 +50,6 @@
                                 <span class="text-3xl text-blue-500 font-medium">{{number_format($product->price)}}</span>
                             </p>
                         </div>
-                        <div class="flex mb-6 items-center">
-                            <div class="inline-flex mr-4">
-                                <button class="mr-1">
-                                    <svg width="20" height="20" viewbox="0 0 20 20" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20 7.91679H12.4167L10 0.416779L7.58333 7.91679H0L6.18335 12.3168L3.81668 19.5835L10 15.0835L16.1834 19.5835L13.8167 12.3168L20 7.91679Z"
-                                              fill="#C1C9D3"></path>
-                                    </svg>
-                                </button>
-                                <button class="mr-1">
-                                    <svg width="20" height="20" viewbox="0 0 20 20" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20 7.91679H12.4167L10 0.416779L7.58333 7.91679H0L6.18335 12.3168L3.81668 19.5835L10 15.0835L16.1834 19.5835L13.8167 12.3168L20 7.91679Z"
-                                              fill="#C1C9D3"></path>
-                                    </svg>
-                                </button>
-                                <button class="mr-1">
-                                    <svg width="20" height="20" viewbox="0 0 20 20" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20 7.91679H12.4167L10 0.416779L7.58333 7.91679H0L6.18335 12.3168L3.81668 19.5835L10 15.0835L16.1834 19.5835L13.8167 12.3168L20 7.91679Z"
-                                              fill="#C1C9D3"></path>
-                                    </svg>
-                                </button>
-                                <button class="mr-1">
-                                    <svg width="20" height="20" viewbox="0 0 20 20" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20 7.91679H12.4167L10 0.416779L7.58333 7.91679H0L6.18335 12.3168L3.81668 19.5835L10 15.0835L16.1834 19.5835L13.8167 12.3168L20 7.91679Z"
-                                              fill="#C1C9D3"></path>
-                                    </svg>
-                                </button>
-                                <button>
-                                    <svg width="20" height="20" viewbox="0 0 20 20" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20 7.91679H12.4167L10 0.416779L7.58333 7.91679H0L6.18335 12.3168L3.81668 19.5835L10 15.0835L16.1834 19.5835L13.8167 12.3168L20 7.91679Z"
-                                              fill="#C1C9D3"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                            <span class="text-md text-gray-400">4.59</span>
-                        </div>
 
                         <div class="flex flex-wrap -mx-2 mb-12">
                             <div class="w-full md:w-2/3 px-2 mb-2 md:mb-0">
@@ -99,20 +59,46 @@
                                 </a>
                             </div>
                             <div class="w-full md:w-1/3 px-2">
-                                <a class="flex w-full py-4 px-2 items-center justify-center leading-8 font-heading font-medium tracking-tighter text-xl text-center bg-white focus:ring-2 focus:ring-gray-200 focus:ring-opacity-50 hover:bg-opacity-60 rounded-xl"
-                                   href="#">
-                                    <span class="mr-2"><i class="fas fa-bookmark text-yellow-500"></i></span>
 
-                                </a>
+                                @if(auth()->check() && auth()->user()->favourites()->where('product_id',$product->id)->exists())
+                                    <form action="/favourites/{{$product->id}}" method="post">
+                                        @method('delete')
+                                        @csrf
+                                        <button type="submit" class="text-xl bg-gray-100 p-3 rounded">
+                                            <i class="fas fa-bookmark text-yellow-500"></i>
+                                        </button>
+                                    </form>
+                                @else
+                                    <form action="/favourites/{{$product->id}}" method="post">
+                                        @csrf
+                                        <button type="submit" class="text-xl hover:bg-gray-100 p-3 rounded">
+                                            <i class="fas fa-bookmark text-yellow-500"></i>
+                                        </button>
+                                    </form>
+                                @endif
+
                             </div>
                         </div>
                         <div>
-                            <h4 class="mb-6 font-heading font-medium">Описание:</h4>
+                            {{--                            <h4 class="mb-6 font-heading font-medium">Описание:</h4>--}}
                             {!! $product->description !!}
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+    </div>
+
+    <div class="bg-white p-3 mt-5">
+        <h5 class="text-lg font-bold mb-2">Cравнить с другими</h5>
+        @foreach($similarProducts as $product)
+            <div class="border p-3 flex items-center">
+                <img src="{{$product->image}}" alt="" class="h-40">
+                <p class="text-lg font-bold mr-5">{{$product->title}}</p>
+                <p class="font-bold font-mono mr-5">{{$product->price}} UZS</p>
+                <span class="text-xs bg-yellow-400 px-2 py-0.5 font-semibold rounded-lg ">{{$product->shop->title}}</span>
+            </div>
+        @endforeach
+
     </div>
 </x-app-layout>

@@ -14,7 +14,9 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
+            integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body class="font-sans antialiased">
 <div class="min-h-screen bg-gray-100">
@@ -64,29 +66,55 @@
     <div class="bg-yellow-400 h-7 w-full">
         <div class="md:max-w-6xl max-w-sm mx-auto flex items-center justify-between px-2">
             <div>
-                <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
-                        class="text-xs font-medium text-gray-600 inline-flex items-center" type="button">
-                    Русский <i class="fas fa-caret-down ml-2"></i>
-                </button>
+                {{--                                <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"--}}
+                {{--                                        class="text-xs font-medium text-gray-600 inline-flex items-center" type="button">--}}
+                {{--                                    Русский <i class="fas fa-caret-down ml-2"></i>--}}
+                {{--                                </button>--}}
 
-                <!-- Dropdown menu -->
-                <div id="dropdown" class="z-50 hidden  bg-white divide-y divide-gray-100 rounded shadow w-20">
-                    <ul class="text-xs text-gray-700" aria-labelledby="dropdownDefaultButton">
-                        <li>
-                            <a href="#" class="block p-2 bg-gray-100 hover:bg-gray-100">Русский</a>
-                        </li>
+                {{--                                <!-- Dropdown menu -->--}}
+                {{--                                <div id="dropdown" class="z-50 hidden  bg-white divide-y divide-gray-100 rounded shadow w-20">--}}
+                {{--                                    <ul class="text-xs text-gray-700" aria-labelledby="dropdownDefaultButton">--}}
+                {{--                                        <li>--}}
+                {{--                                            <a href="#" class="block p-2 bg-gray-100 hover:bg-gray-100">Русский</a>--}}
+                {{--                                        </li>--}}
 
-                        <li>
-                            <a href="#" class="block p-2 hover:bg-gray-100">Узбекский</a>
-                        </li>
-                    </ul>
-                </div>
+                {{--                                        <li>--}}
+                {{--                                            <a href="#" class="block p-2 hover:bg-gray-100">Узбекский</a>--}}
+                {{--                                        </li>--}}
+                {{--                                    </ul>--}}
+                {{--                                </div>--}}
             </div>
 
             <div>
-                <a href="" class="text-xs text-gray-600 font-medium">
-                    <i class="fas fa-sign-in mr-1"></i> Войти
-                </a>
+                @guest
+                    <a href="{{route('login')}}" class="text-xs text-gray-600 font-medium">
+                        <i class="fas fa-sign-in mr-1"></i> Войти
+                    </a>
+                @endguest
+                @auth
+                    <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+                            class="text-xs font-medium text-gray-600 inline-flex items-center" type="button">
+                        {{auth()->user()->name}} ({{auth()->user()->email}}) <i class="fas fa-caret-down ml-2"></i>
+                    </button>
+
+                    <!-- Dropdown menu -->
+                    <div id="dropdown" class="z-50 hidden  bg-white divide-y divide-gray-100 rounded shadow w-20">
+                        <ul class="text-sm text-gray-700" aria-labelledby="dropdownDefaultButton">
+                            {{--                                <li>--}}
+                            {{--                                    <a href="#" class="block p-2 bg-gray-100 hover:bg-gray-100">Русский</a>--}}
+                            {{--                                </li>--}}
+
+                            <li>
+                                <form action="{{route('logout')}}" method="post">
+                                    @csrf
+                                    <button type="submit" class="block p-2 hover:bg-gray-100">Выйти</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+
+                @endauth
+
             </div>
         </div>
     </div>
@@ -130,10 +158,11 @@
                 <span class="hidden md:block">
             Каталог
             </span>
+
             </button>
 
             <div class="ml-5">
-                <a href="#" class="hover:bg-gray-100  py-3 px-3 rounded-lg">
+                <a href="/favourites" class="hover:bg-gray-100  py-3 px-3 rounded-lg">
                     <i class="fa-regular fa-bookmark text-yellow-400 text-2xl"></i>
                 </a>
             </div>

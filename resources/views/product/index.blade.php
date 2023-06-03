@@ -3,7 +3,7 @@
         <div class="flex justify-between p-5">
             <h4 class="text-xl font-medium">{{$category?->title}}</h4>
             <div>
-                Сортировка
+
             </div>
         </div>
         <hr class="mb-3">

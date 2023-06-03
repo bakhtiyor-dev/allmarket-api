@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "amranidev/laracombee": "^0.2.1",
         "anper/iuliia": "^1.2",
         "doctrine/dbal": "^3.6",
         "filament/filament": "^2.17",
@@ -15,7 +16,8 @@
         "laravel/tinker": "^2.8",
         "roach-php/laravel": "^2.0",
         "romanzipp/laravel-queue-monitor": "^4.0",
-        "spatie/laravel-data": "^3.2"
+        "spatie/laravel-data": "^3.2",
+        "willvincent/laravel-rateable": "^3.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

@@ -57,9 +57,19 @@
                 </a>
             @endforeach
         </div>
-
     </div>
 
+    @if(count($recommendations) > 0)
+        <div class="mt-4">
+            <a href="#" class="text-xl font-bold mb-3 uppercase">Рекомендации для вас <i
+                        class="fas fa-chevron-right text-lg"></i></a>
+            <div class="mt-3 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+                @foreach($recommendations as $product)
+                    @include('components.product-card')
+                @endforeach
+            </div>
+        </div>
+    @endif
 
     <div class="mt-10">
 
@@ -70,7 +80,6 @@
             @endforeach
         </div>
     </div>
-
 
     <div class="mt-10">
         <h4 class="text-xl font-bold mb-3 uppercase">ПОПУЛЯРНЫЕ БРЕНДЫ</h4>

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "00f8ce5f399c82838fe9e790d007349a",
+    "content-hash": "a34c21720ee26c50a68deeddbc8ec168",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -74,6 +74,65 @@
                 "source": "https://github.com/akaunting/laravel-money/tree/4.0.1"
             },
             "time": "2023-03-16T14:39:27+00:00"
+        },
+        {
+            "name": "amranidev/laracombee",
+            "version": "v0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amranidev/laracombee.git",
+                "reference": "59b296e61b80aa79c5549d6ee0c1a6b536042e80"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/amranidev/laracombee/zipball/59b296e61b80aa79c5549d6ee0c1a6b536042e80",
+                "reference": "59b296e61b80aa79c5549d6ee0c1a6b536042e80",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.4",
+                "recombee/php-api-client": "^4.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^7.6"
+            },
+            "type": "laravel-package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Amranidev\\Laracombee\\Providers\\LaracombeeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Amranidev\\Laracombee\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Houssain Amrani",
+                    "email": "amranidev@gmail.com"
+                }
+            ],
+            "description": "Recommendation system for laravel",
+            "keywords": [
+                "laravel",
+                "laravel and recombee",
+                "laravel with recombee",
+                "php",
+                "recombee",
+                "recommendation system"
+            ],
+            "support": {
+                "issues": "https://github.com/amranidev/laracombee/issues",
+                "source": "https://github.com/amranidev/laracombee"
+            },
+            "time": "2022-08-16T23:06:51+00:00"
         },
         {
             "name": "anper/iuliia",
@@ -4478,6 +4537,52 @@
             "time": "2023-01-12T18:13:24+00:00"
         },
         {
+            "name": "recombee/php-api-client",
+            "version": "v4.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/recombee/php-api-client.git",
+                "reference": "b983777036045310cc14716a191f1b71ab401a04"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/recombee/php-api-client/zipball/b983777036045310cc14716a191f1b71ab401a04",
+                "reference": "b983777036045310cc14716a191f1b71ab401a04",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.0.0 || ^7.0.0",
+                "php": ">=7.2.0"
+            },
+            "require-dev": {
+                "phpdocumentor/phpdocumentor": "2.*",
+                "phpunit/phpunit": "^9.2.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Recombee\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ondřej Fiedler",
+                    "email": "ondrej.fiedler@recombee.com"
+                }
+            ],
+            "description": "PHP client for easy use of the Recombee recommendation API.",
+            "homepage": "https://recombee.com",
+            "support": {
+                "issues": "https://github.com/recombee/php-api-client/issues",
+                "source": "https://github.com/recombee/php-api-client/tree/v4.1.0"
+            },
+            "time": "2023-01-06T16:12:54+00:00"
+        },
+        {
             "name": "roach-php/core",
             "version": "2.0.1",
             "source": {
@@ -7683,6 +7788,76 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "willvincent/laravel-rateable",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/willvincent/laravel-rateable.git",
+                "reference": "f5445b9b41d1f1afb719bda52dbfdb2f0e39571e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/willvincent/laravel-rateable/zipball/f5445b9b41d1f1afb719bda52dbfdb2f0e39571e",
+                "reference": "f5445b9b41d1f1afb719bda52dbfdb2f0e39571e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^8.53 || ^9.0|^10.0",
+                "illuminate/support": "^8.0 || ^9.0|^10.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.23 || ^7.0|^8.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "willvincent\\Rateable\\RateableServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "willvincent\\Rateable\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Will Vincent",
+                    "email": "tcindie@gmail.com",
+                    "homepage": "https://willvincent.com"
+                }
+            ],
+            "description": "Allows multiple models to be rated with a fivestar like system.",
+            "homepage": "https://github.com/willvincent/laravel-rateable",
+            "keywords": [
+                "Rating",
+                "fivestar",
+                "laravel",
+                "laravel 8",
+                "laravel 9",
+                "rateable",
+                "vote"
+            ],
+            "support": {
+                "issues": "https://github.com/willvincent/laravel-rateable/issues",
+                "source": "https://github.com/willvincent/laravel-rateable/tree/3.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/willvincent",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-02-15T08:11:26+00:00"
         }
     ],
     "packages-dev": [
