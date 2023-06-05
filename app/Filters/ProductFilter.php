@@ -6,7 +6,8 @@ class ProductFilter extends AbstractFilter
 {
     public function category($categoryId): void
     {
-        $this->query->where('category_id', $categoryId);
+        if ($categoryId)
+            $this->query->where('category_id', $categoryId);
     }
 
     public function price(array $priceInterval): void

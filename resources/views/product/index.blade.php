@@ -11,6 +11,22 @@
             <div class="p-5">
                 <form action="{{route('product.filter')}}" method="GET">
                     <div class="mb-10">
+
+                        <label for="categories" class="block mb-2 text-lg font-medium text-gray-900">Категория</label>
+                        <select id="categories"
+                                name="category"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            <option value="" selected>Все</option>
+
+                            @foreach($categories as $category)
+                                <option value="{{$category->id}}"
+                                        @if(request()->category == $category->id) selected @endif>{{$category->title}}</option>
+                            @endforeach
+                        </select>
+
+                    </div>
+
+                    <div class="mb-10">
                         <h3 class="text-lg font-medium mb-2">Цена</h3>
                         <div class="flex mb-3">
 
@@ -54,15 +70,15 @@
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none">
                         Применить
                     </button>
-
-
                 </form>
             </div>
             <div class="col-span-3">
                 <div class="grid grid-cols-4 gap-4">
-                    @foreach($products as $product)
+                    @forelse($products as $product)
                         @include('components.product-card')
-                    @endforeach
+                    @empty
+                        <h4 class="text-center text-gray-400">Ничего не найдено!</h4>
+                    @endforelse
                 </div>
                 <div class="my-5">
                     {!! $products->links() !!}
