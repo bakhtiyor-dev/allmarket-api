@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 
 class Dashboard extends BasePage
 {
+    protected static bool $shouldRegisterNavigation = false;
+
     protected function getWidgets(): array
     {
         return [];

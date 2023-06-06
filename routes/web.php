@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+Route::redirect('/admin', '/admin/brands');
 Route::get('/', [ProductController::class, 'index'])->name('index');
 Route::get('/products', [ProductController::class, 'filter'])->name('product.filter');
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('product.show');
