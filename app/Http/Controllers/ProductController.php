@@ -64,9 +64,12 @@ class ProductController extends Controller
     {
         $query = $request->input('query');
 
-        return Product::query()->where('title', 'like', "%{$query}%")
-            ->get();
+        if ($query) {
+            return Product::query()->where('title', 'like', "%{$query}%")
+                ->get();
+        }
 
+        return [];
     }
 
     public function rate(Product $product, Request $request)
